@@ -5,8 +5,7 @@ privilege: Admin
 actions:
   
   # OS Info
-  - !task: {path: 'Tasks\registry\os-info\edition.yml'}
-  - !task: {path: 'Tasks\registry\os-info\oem-info.yml'}
+  # No OS branding (edition/OEM info) and no WinSxS package removal: both needed Revision Tool
 
   - !task: {path: 'Tasks\start.yml'}
  

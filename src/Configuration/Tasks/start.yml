@@ -13,16 +13,7 @@ actions:
     type: REG_DWORD
     data: '0'
 
-  - !cmd:
-    exeDir: true
-    command: 'robocopy "Licenses" "%SystemDrive%\Licenses" /E /PURGE /IM /IT /NP'
-    ignoreErrors: true
-    weight: 30
-    
-  - !cmd:
-    exeDir: true
-    command: 'copy /y "hosts" "%WINDIR%\System32\drivers\etc\hosts"'
-    weight: 20
+  # No C:\Licenses folder: the licenses ship inside the playbook archive
 
   # Necessary to clean DNS Cache after modifying hosts
   - !cmd:
