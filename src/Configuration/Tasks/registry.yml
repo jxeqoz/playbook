@@ -30,7 +30,8 @@ actions:
   # Security
   - !writeStatus: {status: "Configuring Security"}
   - !task: {path: 'Tasks\registry\security\security.yml'}
-  - !task: {path: 'Tasks\registry\security\vbs.yml'}
+  - !task: {path: 'Tasks\registry\security\bitlocker.yml'}
+  # VBS / Memory Integrity stay on (stock). Alder Lake and newer have MBEC, so the gaming cost is small.
 
   # System
   - !writeStatus: {status: "Configuring System"}
@@ -39,7 +40,7 @@ actions:
   - !task: {path: 'Tasks\registry\system\crash-control.yml'}
   - !task: {path: 'Tasks\registry\system\disable-automatic-maintenance.yml'}
   - !task: {path: 'Tasks\registry\system\ifeo.yml'}
-  - !task: {path: 'Tasks\registry\system\kernel.yml'}
+  # kernel.yml (force-enable Intel TSX) dropped: TSX is a TAA side-channel risk and absent on Alder Lake+
   - !task: {path: 'Tasks\registry\system\logon.yml'}
   - !task: {path: 'Tasks\registry\system\multimedia.yml'}
   - !task: {path: 'Tasks\registry\system\oobe.yml'}

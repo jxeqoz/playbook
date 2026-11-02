@@ -9,6 +9,10 @@ actions:
   - !registryValue: {path: 'HKCU\Software\Microsoft\Windows Security Health\State', value: 'AccountProtection_MicrosoftAccount_Disconnected', type: REG_DWORD, data: '0'}
   - !registryValue: {path: 'HKU\.DEFAULT\Software\Microsoft\Windows Security Health\State', value: 'AccountProtection_MicrosoftAccount_Disconnected', type: REG_DWORD, data: '0'}
 
+  # === Remote Assistance - Off (legacy inbound help sessions; Quick Assist is unaffected)
+  - !registryValue: {path: 'HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance', value: 'fAllowToGetHelp', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance', value: 'fAllowFullControl', type: REG_DWORD, data: '0'}
+
   # ==============================================
   # === Windows Defender Antivirus - Reporting ===
   # ==============================================
@@ -17,8 +21,7 @@ actions:
   # ------> https://docs.microsoft.com/en-us/windows/privacy/configure-windows-diagnostic-data-in-your-organization
   - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows Defender\Reporting', value: 'DisableGenericRePorts', type: REG_DWORD, data: '1'}
 
-  # === Disable Windows Defender sample submission nag
-  - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet', value: 'SubmitSamplesConsent', type: REG_DWORD, data: '2'}
+  # Sample submission is not forced off: block-at-first-sight needs it (final.yml sets "send safe samples")
 
   # ==================================================================
   # === Windows Defender Antivirus - Security Intelligence Updates ===
@@ -39,17 +42,5 @@ actions:
   # ------> https://admx.help/?Category=Windows_11_2022&Policy=Microsoft.Policies.SmartScreen::ConfigureAppInstallControl
   - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows Defender\SmartScreen', value: 'ConfigureAppInstallControl', type: REG_SZ, data: 'Anywhere'}
 
-  - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost', value: 'EnableWebContentEvaluation', type: REG_DWORD, data: '0'}
-
-  # === Configure Windows Defender SmartScreen (Microsoft Edge) - Disabled
-  - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\MicrosoftEdge\PhishingFilter', value: 'EnabledV9', type: REG_DWORD, data: '0'}
-
-  
-  # ========================
-  # === Windows Security ===
-  # ========================
-
-  # === Hide Windows Security Systray - Enabled
-  # ------> https://www.tenforums.com/tutorials/11974-hide-show-windows-security-notification-area-icon-windows-10-a.html
-  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Systray', value: 'HideSystray', type: REG_DWORD, data: '1'}
-  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run', value: 'SecurityHealth', operation: delete}
+  # SmartScreen "Check apps and files", Edge SmartScreen and the Windows Security tray icon stay on (stock):
+  # Defender is kept, and SmartScreen is the check that stops unknown downloaded executables.

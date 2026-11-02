@@ -15,9 +15,7 @@ actions:
 
   # No C:\Licenses folder: the licenses ship inside the playbook archive
 
-  # Necessary to clean DNS Cache after modifying hosts
-  - !cmd:
-    command: 'ipconfig /flushdns'
+  # hosts file is left stock: Defender stays on and flags hosts entries that block Microsoft domains
 
   - !writeStatus: {status: "Installing VCRedist"}
   - !download: 

@@ -74,7 +74,11 @@ actions:
   - !powerShell:
     wait: true
     runas: currentUserElevated
-    
+    command: 'Set-MpPreference -DisableRealtimeMonitoring $false -MAPSReporting Advanced -SubmitSamplesConsent SendSafeSamples'
+
+  # start.yml muted Security and Maintenance toasts during deployment; turn them back on ("virus protection is off" etc.)
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled', operation: delete}
+
   - !powerShell:
     command: |
       $explorerProcess = Get-Process -Name explorer -ErrorAction SilentlyContinue

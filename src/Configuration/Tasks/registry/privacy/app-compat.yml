@@ -4,8 +4,7 @@ description: Configure Application Compatibility
 privilege: TrustedInstaller
 actions:
 
-  # === Turn off Application Compatibility Engine - Enabled
-  - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows\AppCompat', value: 'DisableEngine', type: REG_DWORD, data: '1'}
+  # Application Compatibility Engine stays on: older games, launchers and installers rely on its shims
 
   # === Turn off Application Telemetry - Enabled
   - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows\AppCompat', value: 'AITEnable', type: REG_DWORD, data: '0'}
