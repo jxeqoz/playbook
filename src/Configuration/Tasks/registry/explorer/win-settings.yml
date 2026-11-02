@@ -413,12 +413,15 @@ actions:
   - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetoothSync', value: 'Value', type: REG_SZ, data: 'Deny'}
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetoothSync', value: 'Value', type: REG_SZ, data: 'Deny'}
 
-  # === Background apps - Off
-  # Causes KGL versions mismatch in Xbox Game Bar
-  # - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows\AppPrivacy', value: 'LetAppsRunInBackground', type: REG_DWORD, data: '2'}
-  # - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Search', value: 'BackgroundAppGlobalToggle', type: REG_DWORD, data: '0'}
-  # - !registryValue: {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Search', value: 'BackgroundAppGlobalToggle', type: REG_DWORD, data: '0'}
-  # - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications', value: 'GlobalUserDisabled', type: REG_DWORD, data: '1'}
+  # === Background apps - Off for Store (UWP) apps; Win32 apps such as Steam or Discord are not affected
+  # ------> Xbox Game Bar is force-allowed: blocking it causes a KGL (known game list) mismatch, so Game Mode stops recognising new games
+  # ------> https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-privacy#letappsruninbackground
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', value: 'LetAppsRunInBackground', type: REG_DWORD, data: '2', option: 'disable-background-apps'}
+  # ------> Microsoft Store is allowed too so Store apps (Notepad, Terminal, ...) keep receiving updates; reg.exe separates REG_MULTI_SZ items with \0
+  - !cmd:
+    command: 'reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsRunInBackground_ForceAllowTheseApps /t REG_MULTI_SZ /d "Microsoft.XboxGamingOverlay_8wekyb3d8bbwe\0Microsoft.WindowsStore_8wekyb3d8bbwe" /f'
+    wait: true
+    option: 'disable-background-apps'
 
   # === App diagnostics - Off
   - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics', value: 'Value', type: REG_SZ, data: 'Deny'}
