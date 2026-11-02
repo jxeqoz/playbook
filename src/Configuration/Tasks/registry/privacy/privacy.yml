@@ -114,3 +114,11 @@ actions:
   # Can be also removed by uninstall the Xbox app
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Microsoft.Xbox.GamingAI.Companion.Host.GamingCompanionHostOptions', value: 'ActivationType', type: REG_DWORD, data: '4294967295'}
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\WindowsRuntime\ActivatableClassId\Microsoft.Xbox.GamingAI.Companion.Host.GamingCompanionHostOptions', value: 'Server', type: REG_SZ, data: ''}
+
+  # ===================
+  # === Development ===
+  # ===================
+
+  # === Visual Studio Experience Improvement Program - Off (no-op until VS is installed)
+  # ------> https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-experience-improvement-program
+  - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\VisualStudio\SQM', value: 'OptIn', type: REG_DWORD, data: '0'}
