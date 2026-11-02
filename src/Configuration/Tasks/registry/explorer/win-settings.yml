@@ -4,13 +4,10 @@ description: Configure Windows Settings
 privilege: TrustedInstaller
 actions:
 
-  # === Hide stripped components from Settings
-  - !run:
-    path: "%ProgramFiles%\\Revision Tool"
-    exe: "revitool.exe"
-    args: 'registry hide-page --value "cortana,privacy-feedback,windowsinsider,home"'
-    wait: true
-    runas: currentUserElevated
+  # === Hide unused pages from Settings (Settings Home is mostly Microsoft 365 / Game Pass promos)
+  # ------> https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-settings#pagevisibilitylist
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'SettingsPageVisibility', type: REG_SZ, data: 'hide:cortana;windowsinsider;home', option: "!remove-appx-yourphone"}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'SettingsPageVisibility', type: REG_SZ, data: 'hide:cortana;windowsinsider;home;crossdevice', option: "remove-appx-yourphone"}
 
   # === Hide Insider page from Settings --> Windows Updates
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility', value: 'HideInsiderPage', type: REG_DWORD, data: '1'}
@@ -181,14 +178,7 @@ actions:
   # === Automatically update maps - Off
   - !registryValue: {path: 'HKLM\SYSTEM\Maps', value: 'AutoUpdateEnabled', type: REG_DWORD, data: '0'}
 
-  # === Resume - Off
-  - !run:
-    path: "%ProgramFiles%\\Revision Tool"
-    exe: "revitool.exe"
-    args: 'registry hide-page --value "crossdevice"'
-    wait: true
-    runas: currentUserElevated
-    option: "remove-appx-yourphone"
+  # === Resume - Off (its Settings page is hidden at the top of this file)
 
   # Reliable method to prevent CrossDeviceResume from running
   # Discovered by https://github.com/meetrevision/ 
@@ -303,13 +293,16 @@ actions:
   - !registryValue: {path: 'HKCU\Software\Microsoft\Speech_OneCore\Settings\OnlineSpeechPrivacy', value: 'HasAccepted', type: REG_DWORD, data: '0'}
   - !registryValue: {path: 'HKU\.DEFAULT\Software\Microsoft\Speech_OneCore\Settings\OnlineSpeechPrivacy', value: 'HasAccepted', type: REG_DWORD, data: '0'}
 
-  # === Inking & typing personalization
-  - !run:
-    path: "%ProgramFiles%\\Revision Tool"
-    exe: "revitool.exe"
-    args: "tweaks personalization input-personalization disable"
-    wait: true
-    runas: currentUserElevated
+  # === Inking & typing personalization - Off
+  # ------> AllowInputPersonalization is not set: it also breaks speech recognition
+  - !registryValue: {path: 'HKCU\Software\Microsoft\InputPersonalization', value: 'RestrictImplicitInkCollection', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\Software\Microsoft\InputPersonalization', value: 'RestrictImplicitTextCollection', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore', value: 'HarvestContacts', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\Software\Microsoft\Personalization\Settings', value: 'AcceptedPrivacyPolicy', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Policies\Microsoft\InputPersonalization', value: 'RestrictImplicitInkCollection', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Policies\Microsoft\InputPersonalization', value: 'RestrictImplicitTextCollection', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization', value: 'RestrictImplicitInkCollection', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization', value: 'RestrictImplicitTextCollection', type: REG_DWORD, data: '1'}
 
 
   # ======> Diagnostics & feedback

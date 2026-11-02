@@ -29,38 +29,16 @@ actions:
     exe: "vc_redist.x64.exe"
     args: '/quiet /norestart'
 
-  - !writeStatus: {status: 'Installing Revision Tool'}
-  - !download: 
-    url: 'https://github.com/meetrevision/revision-tool/releases/latest/download/RevisionTool-Setup.exe'
-    destination: "RevisionTool-Setup-Latest.exe"
-    overwrite: true
-    errorAction: Log
-  - !powerShell:
-    exeDir: true
-    wait: true
-    errorAction: Halt
-    weight: 50
-    command: >-
-      $installer = if (Test-Path -LiteralPath '.\RevisionTool-Setup-Latest.exe') {
-        '.\RevisionTool-Setup-Latest.exe'
-      } elseif (Test-Path -LiteralPath '.\RevisionTool-Setup.exe') {
-        '.\RevisionTool-Setup.exe'
-      } else {
-        throw 'No Revision Tool installer was found.'
-      };
-      Start-Process -FilePath $installer -ArgumentList '/VERYSILENT /TASKS="desktopicon"' -Wait -WindowStyle Hidden
-
   - !writeStatus: {status: "Optimizing PowerShell"}
   - !run:
     exeDir: true
     exe: "PowerShell"
     args: '-NoP -ExecutionPolicy Bypass -File ngen.ps1'
+  # Ultimate Performance copy with core parking off (CPMINCORES/CPMINCORES1 = 100%) and USB 3 link power management off.
+  # Same values Revision Tool applied; the PERFINC/PERFDEC knobs it also set are ignored on HWP CPUs, so they are skipped.
     weight: 100
 
   - !writeStatus: {status: "Configuring a power plan"}
-  - !run:
-    path: "%ProgramFiles%\\Revision Tool"
-    exe: "revitool.exe"
-    args: "tweaks performance powerplan enable"
+  - !powerShell:
     wait: true
     runas: currentUserElevated

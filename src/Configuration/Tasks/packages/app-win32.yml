@@ -29,16 +29,16 @@ actions:
         'Microsoft.MicrosoftEdgeDevToolsClient',
         'Microsoft.Edge.GameAssist'
       );
-      & (Join-Path $env:ProgramFiles 'Revision Tool\revitool.exe') appx --all-users --remove ($packages -join ',')
-  
-  # In case Revision Tool's removal method fails
+      & .\APPX.ps1 -Name $packages
+
+  # Copilot app (Recall snapshots are turned off by policy in win-settings.yml)
   - !powerShell:
     option: 'remove-winsxs-ai'
     exeDir: true
     errorAction: Ignore
     weight: 30
     command: >-
-      & (Join-Path $env:ProgramFiles 'Revision Tool\revitool.exe') appx --all-users --remove 'Microsoft.Copilot'
+      & .\APPX.ps1 -Name 'Microsoft.Copilot'
 
   # OneDrive
   - !writeStatus: {status: "Removing OneDrive", option: "remove-onedrive"}
@@ -61,7 +61,7 @@ actions:
         'OneDrive',
         'microsoft.microsoftskydrive'
       );
-      & (Join-Path $env:ProgramFiles 'Revision Tool\revitool.exe') appx --all-users --remove ($packages -join ',')
+      & .\APPX.ps1 -Name $packages
 
   # Teams
   - !writeStatus: {status: "Removing Teams", option: "remove-teams"}
@@ -81,7 +81,7 @@ actions:
         'MSTeams', # New Teams
         'Flipgrid'
       );
-      & (Join-Path $env:ProgramFiles 'Revision Tool\revitool.exe') appx --all-users --remove ($packages -join ',')
+      & .\APPX.ps1 -Name $packages
   
   # Microsoft Teams Meeting Add-in for Microsoft Office
   - !run:

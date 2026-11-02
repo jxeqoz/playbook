@@ -4,15 +4,6 @@ description: Installs preferred software
 privilege: TrustedInstaller
 actions:
 
-  # https://github.com/meetrevision/playbook/issues/81
-  # - !status: {status: 'Updating Winget'}
-  # - !powerShell:
-  #   weight: 50
-  #   runas: currentUserElevated
-  #   wait: true
-  #   exeDir: true
-  #   command: '.\UPDATE-APPX.ps1'
-
   - !status: {status: 'Installing Brave', option: "browser-brave"}
   - !download: 
     option: "browser-brave"

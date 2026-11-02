@@ -72,14 +72,7 @@ actions:
 
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Servicing', value: 'RepairContentServerSource', operation: delete}
   
-  # Disabling core Superfetch components break 'defrag c: -b'
-  - !run:
-    path: "%ProgramFiles%\\Revision Tool"
-    exe: "revitool.exe"
-    args: "tweaks performance superfetch enable"
-    wait: true
-    runas: currentUserElevated
-
+  # SysMain (Superfetch) stays on: it also runs memory compression, which helps a 16GB box
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction', value: 'Enable', operation: delete}
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OptimalLayout', value: 'EnableAutoLayout', operation: delete}
 
@@ -109,13 +102,7 @@ actions:
   - !registryKey: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Biometrics', operation: delete}
 
   # Fix KGL mismatch in Xbox Game Bar
-  # Disabling background apps breaks Xbox Game Bar KGL update. We remove bloat anyway and it can be toggled in Revision Tool
-  - !run:
-    path: "%ProgramFiles%\\Revision Tool"
-    exe: "revitool.exe"
-    args: "tweaks performance background-apps enable"
-    wait: true
-    runas: currentUserElevated
+  # Game Bar is exempt from the disable-background-apps policy (win-settings.yml) so its KGL keeps updating
   - !appx: {operation: clearCache, name: '*XboxGamingOverlay*'}
 
   # Internet Explorer

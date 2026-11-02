@@ -11,8 +11,6 @@ actions:
  
   
   - !task: {path: 'Tasks\packages\app-win32.yml'}
-  # Uninstalling WinSxS packages before app-win32 could leave leftovers
-  - !task: {path: 'Tasks\packages\win-sxs.yml'}
   - !task: {path: 'Tasks\packages\appx.yml'}
 
   
