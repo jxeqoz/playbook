@@ -5,7 +5,7 @@ privilege: TrustedInstaller
 actions:
 
   # === CEIP
-  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\CompatTelRunner.exe', value: 'Debugger', type: REG_SZ, data: '%windir%\System32\taskkill.exe'}
+  # CompatTelRunner is not blocked: it feeds the compatibility appraiser that Windows Update uses to offer feature updates
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\AggregatorHost.exe', value: 'Debugger', type: REG_SZ, data: '%windir%\System32\taskkill.exe'}
 
   # === Webcam Telemetry

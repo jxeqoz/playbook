@@ -14,15 +14,9 @@ actions:
   # ------> NOTE: Used to break Xbox Sign-in in older Windows 10 versions
   # - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate', type: REG_DWORD, data: '1'}
 
-  # === Pause Windows Updates to 2038 January 19
-  # === FlightSettingsMaxPauseDays is responsible for the rest regs to work
-  - !run:
-    path: "%ProgramFiles%\\Revision Tool"
-    exe: "revitool.exe"
-    args: "tweaks updates wu-pause-updates enable"
-    wait: true
-    runas: currentUserElevated
-  
+  # Upstream paused Windows Update until 2038; dropped so security patches keep installing.
+  # Pause manually in Settings > Windows Update when needed.
+
   # === Windows Update Notifications - Disabled
   # ------> https://www.askvg.com/fix-how-to-stop-automatic-forced-upgrade-to-feature-updates-in-windows-10/
   - !registryValue: {path: 'HKLM\SYSTEM\Setup\UpgradeNotification', value: 'UpgradeAvailable', type: REG_DWORD, data: '0'}
@@ -52,9 +46,7 @@ actions:
   # === Extra ===
   # =============
 
-  # === Reserved Storage (for updates) - Disabled
-  # ------> https://www.howtogeek.com/425563/how-to-disable-reserved-storage-on-windows-10/
-  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager', value: 'ShippedWithReserves', type: REG_DWORD, data: '0'}
+  # Reserved Storage stays on: if WSL/Docker disk images fill C:, updates still have room to install
 
   # === Prevent Automatic Updates - Enabled
   # ------> Media Player Updates auto update disabled.

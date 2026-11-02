@@ -49,7 +49,7 @@ actions:
   # Updates
   - !writeStatus: {status: "Configuring Updates"}
   - !task: {path: 'Tasks\registry\updates\updates.yml'}
-  - !task: {path: 'Tasks\registry\updates\drivers.yml'}
+  # drivers.yml dropped: on a fresh install Windows Update supplies chipset/LAN/audio drivers
   - !task: {path: 'Tasks\registry\updates\ms-store.yml'}
 
   # Miscellaneous

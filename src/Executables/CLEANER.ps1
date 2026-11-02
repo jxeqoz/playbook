@@ -39,18 +39,8 @@ foreach ($item in $volumeCache.GetEnumerator()) {
 
 Start-Process -FilePath "$env:SystemRoot\system32\cleanmgr.exe" -ArgumentList "/sagerun:1337" -Wait:$false
 
-Write-Host "Cleaning up Event Logs"
-Get-EventLog -LogName * | ForEach-Object { Clear-EventLog $_.Log }
-
-Write-Host "Disabling Reserved Storage"
-Set-WindowsReservedStorageState -State Disabled
-
-Stop-Service -Name "bits" -Force | Out-Null
-Stop-Service -Name "appidsvc" -Force | Out-Null
-Stop-Service -Name "dps" -Force | Out-Null
-Stop-Service -Name "wuauserv" -Force | Out-Null
-# Stop-Service -Name "cryptsvc" -Force | Out-Null # Intermittent issues stopping this service
-
+# Event logs, Windows\Logs, LogFiles and SoftwareDistribution are kept: they are what you need
+# to diagnose a failed step, and wiping SoftwareDistribution resets Windows Update state
 Write-Host "Cleaning up leftovers"
 $foldersToRemove = @(
     "CbsTemp",

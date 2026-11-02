@@ -15,7 +15,7 @@ actions:
   # === Hide Insider page from Settings --> Windows Updates
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility', value: 'HideInsiderPage', type: REG_DWORD, data: '1'}
 
-  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', value: 'TrayIconVisibility', type: REG_DWORD, data: '0'}
+  # Windows Update tray icon stays (stock) so pending restarts are visible
 
   # ==============
   # === System ===

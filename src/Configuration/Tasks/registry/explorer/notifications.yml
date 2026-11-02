@@ -15,9 +15,8 @@ actions:
   # === Turn off notifications network usage - Enabled
   - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications', value: 'NoCloudApplicationNotification', type: REG_DWORD, data: '1'}
 
-  # === (Windows Update) Display options for update notifications
-  # === 2 – Disable all notifications, including restart warnings
-  - !registryValue: {path: 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate', value: 'UpdateNotificationLevel', type: REG_DWORD, data: '2'}
+  # Windows Update notifications (incl. restart warnings) stay stock; revert.yml only runs on upgrades,
+  # so the old UpdateNotificationLevel=2 policy would never have been cleaned up on a fresh install
 
   # === Let's finish setting up your device - Enabled
   - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement', value: 'ScoobeSystemSettingEnabled', type: REG_DWORD, data: '0'}
