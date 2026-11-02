@@ -8,8 +8,8 @@ actions:
   # No OS branding (edition/OEM info) and no WinSxS package removal: both needed Revision Tool
 
   - !task: {path: 'Tasks\start.yml'}
- 
-  
+
+
   - !task: {path: 'Tasks\packages\app-win32.yml'}
   - !task: {path: 'Tasks\packages\appx.yml'}
 

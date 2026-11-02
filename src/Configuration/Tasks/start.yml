@@ -32,11 +32,19 @@ actions:
     exeDir: true
     exe: "PowerShell"
     args: '-NoP -ExecutionPolicy Bypass -File ngen.ps1'
-  # Ultimate Performance copy with core parking off (CPMINCORES/CPMINCORES1 = 100%) and USB 3 link power management off.
-  # Same values Revision Tool applied; the PERFINC/PERFDEC knobs it also set are ignored on HWP CPUs, so they are skipped.
     weight: 100
 
+  # Ultimate Performance copy with core parking off (CPMINCORES/CPMINCORES1 = 100%) and USB 3 link power management off.
+  # Same values Revision Tool applied; the PERFINC/PERFDEC knobs it also set are ignored on HWP CPUs, so they are skipped.
   - !writeStatus: {status: "Configuring a power plan"}
   - !powerShell:
     wait: true
     runas: currentUserElevated
+    command: |
+      $plan = '6a93ec26-284d-4943-9fc4-c9616def55c6'
+      $cpu = '54533251-82be-4824-96c1-47b60b740d00'
+      if (-not (powercfg -list | Select-String $plan)) { powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 $plan }
+      powercfg -setacvalueindex $plan $cpu 0cc5b647-c1df-4637-891a-dec35c318583 100
+      powercfg -setacvalueindex $plan $cpu 0cc5b647-c1df-4637-891a-dec35c318584 100
+      powercfg -setacvalueindex $plan 2a737441-1930-4402-8d77-b2bebba308a3 d4e98f31-5ffe-4ce1-be31-1b38b384c009 0
+      powercfg -setactive $plan

@@ -20,8 +20,10 @@ actions:
 
   - !powerShell:
     option: "remove-edge"
+    wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 30
     command: >-
       $packages = @(
@@ -34,8 +36,10 @@ actions:
   # Copilot app (Recall snapshots are turned off by policy in win-settings.yml)
   - !powerShell:
     option: 'remove-winsxs-ai'
+    wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 30
     command: >-
       & .\APPX.ps1 -Name 'Microsoft.Copilot'
@@ -55,6 +59,7 @@ actions:
     wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 10
     command: >-
       $packages = @(
@@ -74,6 +79,7 @@ actions:
     wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 10
     command: >-
       $packages = @(

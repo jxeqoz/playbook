@@ -45,9 +45,6 @@ Write-Host "Cleaning up leftovers"
 $foldersToRemove = @(
     "CbsTemp",
     "System32\SleepStudy",
-    "System32\sru",
-    "System32\WDI\LogFiles",
-    "System32\winevt\Logs",
     "SystemTemp",
     "Temp"
 

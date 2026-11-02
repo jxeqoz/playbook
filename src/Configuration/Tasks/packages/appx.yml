@@ -9,6 +9,7 @@ actions:
     wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 48
     command: >-
        $packages = @(
@@ -66,6 +67,7 @@ actions:
     wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 10
     command: >-
       & .\APPX.ps1 -Name 'Microsoft.Windows.Photos'
@@ -76,6 +78,7 @@ actions:
     wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 10
     command: >-
       & .\APPX.ps1 -Name 'Microsoft.Windows.DevHome'
@@ -86,6 +89,7 @@ actions:
     wait: true
     exeDir: true
     errorAction: Ignore
+    runas: currentUserElevated
     weight: 20
     command: >-
       $packages = @(

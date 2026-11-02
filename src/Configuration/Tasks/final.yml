@@ -65,7 +65,7 @@ actions:
   - !appx: {operation: clearCache, name: '*TCUI*'}
 
   # Force update group policy
-  - !run: 
+  - !run:
     exe: "gpupdate.exe"
 
   # Turn Defender back on after the DefenderToggled requirement (real-time, cloud-delivered protection, safe samples).
@@ -73,6 +73,7 @@ actions:
   - !writeStatus: {status: "Re-enabling Windows Defender"}
   - !powerShell:
     wait: true
+    errorAction: Log
     runas: currentUserElevated
     command: 'Set-MpPreference -DisableRealtimeMonitoring $false -MAPSReporting Advanced -SubmitSamplesConsent SendSafeSamples'
 
