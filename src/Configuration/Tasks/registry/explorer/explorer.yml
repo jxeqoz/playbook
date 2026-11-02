@@ -9,7 +9,28 @@ actions:
   # ------> https://www.windowslatest.com/2024/03/04/windows-11-can-open-big-folders-in-file-explorer-faster-if-you-turn-off-folder-discovery/
   - !registryValue: {path: 'HKCU\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell', value: 'FolderType', type: REG_SZ, data: 'NotSpecified'} 
   - !registryValue: {path: 'HKU\.DEFAULT\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell', value: 'FolderType', type: REG_SZ, data: 'NotSpecified'}
-  
+  # AME does not mount the user classes hive, so !registryValue under HKCU\Software\Classes can be skipped.
+  # Write it again as the signed-in user (same workaround as Atlas-OS/Atlas@3ff023ad).
+  - !cmd:
+    command: 'reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell" /v FolderType /t REG_SZ /d NotSpecified /f'
+    runas: currentUserElevated
+    wait: true
+
+  # === perf: Hide Gallery from the navigation pane (it thumbnails the whole Pictures library)
+  - !cmd:
+    command: 'reg add "HKCU\Software\Classes\CLSID\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}" /v System.IsPinnedToNameSpaceTree /t REG_DWORD /d 0 /f'
+    runas: currentUserElevated
+    wait: true
+
+  # === perf: Home / Quick Access - no recent files, frequent folders or Office.com files
+  # ------> Stale entries pointing at removed drives or shares stall Explorer and Open/Save dialogs; pinned folders stay
+  - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', value: 'ShowRecent', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', value: 'ShowFrequent', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', value: 'ShowCloudFilesInQuickAccess', type: REG_DWORD, data: '0'}
+
+  # === Show hidden files (.git, .env); protected OS files stay hidden
+  - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden', type: REG_DWORD, data: '1'}
+
 
   # === perf: Force explorer to use high performance GPU
   - !registryValue: { path: 'HKCU\Software\Microsoft\DirectX\UserGpuPreferences', value: 'C:\Windows\explorer.exe', type: REG_SZ, data: 'GpuPreference=2;' }

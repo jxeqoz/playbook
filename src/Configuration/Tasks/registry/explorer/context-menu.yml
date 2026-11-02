@@ -6,6 +6,14 @@ actions:
 
   # Enables the classic right click context menu in Explorer on Windows 11
   - !registryValue: {path: 'HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32', value: '', type: REG_SZ, data: '', option: "configure-lcm"}
+  # Same value as the signed-in user: AME may skip HKCU\Software\Classes (see explorer.yml)
+  - !cmd:
+    command: 'reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /t REG_SZ /d "" /f'
+    runas: currentUserElevated
+    wait: true
+    option: "configure-lcm"
+
+  # 'Take Ownership' entries dropped: recursive takeown/icacls on a misclicked system folder breaks Windows
 
   # === Add Take Ownership to the context menu.
   - !registryKey: {path: 'HKCR\*\shell\runas'}
