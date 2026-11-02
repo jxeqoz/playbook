@@ -468,5 +468,21 @@ actions:
   # === Disable Recall snapshots (24H2)
   - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', value: 'DisableAIDataAnalysis', type: REG_DWORD, data: '1'}
 
-  # === Enable Sudo - On (Inline)
-  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Sudo', value: 'Enabled', type: REG_DWORD, data: '3'}
+  # === Enable Sudo - On (In a new window)
+  # ------> Inline mode (3) lets an unelevated process drive the elevated one: https://learn.microsoft.com/en-us/windows/advanced-settings/sudo/
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Sudo', value: 'Enabled', type: REG_DWORD, data: '1'}
+
+  # === Enable Win32 long paths (>260 chars) - node_modules, deep git repos
+  - !registryValue: {path: 'HKLM\SYSTEM\CurrentControlSet\Control\FileSystem', value: 'LongPathsEnabled', type: REG_DWORD, data: '1'}
+
+  # === Developer Mode - On
+  # ------> Lets git/npm/pnpm create symlinks without admin
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock', value: 'AllowDevelopmentWithoutDevLicense', type: REG_DWORD, data: '1'}
+
+  # === PowerShell execution policy - RemoteSigned (Windows client default is Restricted, which blocks local dev scripts)
+  # ------> Unsigned scripts downloaded from the internet are still blocked
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell', value: 'ExecutionPolicy', type: REG_SZ, data: 'RemoteSigned'}
+
+  # === Archive apps automatically - Off (keeps rarely played Store / Game Pass games installed)
+  # ------> https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-applicationmanagement#allowautomaticapparchiving
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Appx', value: 'AllowAutomaticAppArchiving', type: REG_DWORD, data: '0'}

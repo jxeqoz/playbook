@@ -9,9 +9,8 @@ actions:
   - !cmd: {command: 'fsutil behavior set disableLastAccess 1'}
   - !cmd: {command: 'fsutil behavior set disable8dot3 1'}
 
-  # Disable Memory Compression
-  - !powerShell: 
-    command: 'Disable-MMAgent -mc'
+  # Memory Compression stays ON (Windows default): with 16GB and IDE/Docker/browser + a game open,
+  # compressing beats paging to disk. Toggle later: Disable-MMAgent -mc
 
   # Microsoft Update registration (RegisterWithAU) stays stock: .NET and other Microsoft products get security fixes through it
 
