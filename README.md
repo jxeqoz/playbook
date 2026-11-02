@@ -1,80 +1,78 @@
-<h1 align="center">
-
-ReviOS Playbook📜
-
----
-
-<img src="images/github-banner.png" alt="image" width="900">
-
-</h1>
+<h1 align="center">ReviOS Playbook — Custom Fork 📜</h1>
 
 <div align="center">
 
-[![Releases](https://img.shields.io/github/v/release/meetrevision/playbook.svg?label=Release)](https://github.com/meetrevision/playbook/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/meetrevision/playbook/total?label=Total%20downloads)](https://github.com/meetrevision/playbook/releases)
-[![Discord](https://img.shields.io/discord/619835916139364383?label=Revision%20Discord&color=D50000&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMzMzLjMzMyIgaGVpZ2h0PSIxMzMzLjMzMyIgeG1sbnM6dj0iaHR0cHM6Ly92ZWN0YS5pby9uYW5vIj48ZGVmcz48Y2xpcFBhdGggaWQ9IkEiPjxwYXRoIGQ9Ik0wIDEwMDBoMTAwMFYwSDB6Ii8+PC9jbGlwUGF0aD48L2RlZnM+PGcgY2xpcC1wYXRoPSJ1cmwoI0EpIiB0cmFuc2Zvcm09Im1hdHJpeCgxLjMzMzMzMyAwIDAgLTEuMzMzMzMzIDAgMTMzMy4zMzMzKSI+PGcgZmlsbD0iIzliMDAwMCI+PHBhdGggZD0iTTYxNC43MjQgNjIyLjQ2Yy0uOTA5LTQ1LjQtMjYuMDItODQuODYtNjIuOTQ5LTEwNnYtLjAxYy0xOC4yOC0xMC40Ny0zOS40NS0xNi40NS02Mi4wMjEtMTYuNDVoLTcyLjgzbC0xNTcuMTEgMjcyLjEyYzEzLjEtMTMuNjMgMzEuNTItMjIuMTIgNTEuOTItMjIuMTJoMTc2LjU0YzcwLjI3IDAgMTI3Ljg2LTU3LjI5IDEyNi40NS0xMjcuNTQiLz48cGF0aCBkPSJNNzM2LjIwNCAxMjVoLTg4LjkyYy04LjU3IDAtMTYuNDkgNC41Ny0yMC43OCAxMmwtMTM3LjQxIDIzOC4wMUw0MTYuOTI0IDUwMGg3Mi44M2MyMi41NyAwIDQzLjc0IDUuOTggNjIuMDIgMTYuNDVsNjIuMDUtMTA3LjQ3TDc1Ni45OTQgMTYxYzkuMjQtMTYtMi4zMTEtMzYtMjAuNzktMzYiLz48L2c+PHBhdGggZD0iTTQxNi45MzQgNzUwaC0xMDUuMmMtMjAuNCAwLTM4LjgyIDguNDktNTEuOTIgMjIuMTJsLS4wMS4wMS04LjA0IDEzLjk0Yy0xMy43NCAyMy44MS01LjU4IDU0LjI1IDE4LjIyIDY4bDIyLjA0IDEyLjcyYzIzLjgxIDEzLjc1IDU0LjI1IDUuNTkgNjgtMTguMjJ6IiBmaWxsPSIjYjcxYzFjIi8+PHBhdGggZD0iTTczOS43NDQgNjI2LjAxYy4zNy05Mi4zMy01MC43My0xNzMuNDMtMTI1LjkyLTIxNy4wMjktMzYuODYtMjEuMzgxLTc5LjUyLTMzLjczMS0xMjQuNzMtMzMuOTcxbC0xLjM3LS4wMWgtOTguOThjLTEzLjI1IDAtMjMuOTktMTAuNzQtMjMuOTktMjMuOTlWMTQ5LjA4YzAtMTMuMjk5LTEwLjc5LTI0LjA4LTI0LjA4LTI0LjA4aC03Ni44NGMtMTMuMyAwLTI0LjA4IDEwLjc5LTI0LjA4IDI0LjA5VjQyOGMwIDM5Ljc3IDMyLjIzIDcyIDcyIDcyaDE3OGMyMi41NyAwIDQzLjc0IDUuOTggNjIuMDIgMTYuNDV2LjAxYzM2LjkzIDIxLjE0IDYyLjA0IDYwLjYgNjIuOTQ5IDEwNkM2MTYuMTM0IDY5Mi43MSA1NTguNTQ0IDc1MCA0ODguMjc0IDc1MGgtMTc2LjU0Yy0yMC40IDAtMzguODIgOC40OS01MS45MiAyMi4xMmwtLjAxLjAxYy0xMi40MiAxMi45NC0yMC4wNSAzMC41LTIwLjA1IDQ5Ljg1djI4Ljk0YzAgMTMuMyAxMC43OCAyNC4wOCAyNC4wOCAyNC4wOGgyMjUuOTJjMTM3LjczIDAgMjQ5LjQ1LTExMS4zOCAyNDkuOTktMjQ4Ljk5IiBmaWxsPSIjZDUwMDAwIi8+PC9nPjwvc3ZnPg==)](https://discord.gg/962y4pU)
-[![Donate](https://img.shields.io/badge/Support_us-Donate-darkgreen?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI%2FPg0KPCEtLSBVcGxvYWRlZCB0bzogU1ZHIFJlcG8sIHd3dy5zdmdyZXBvLmNvbSwgR2VuZXJhdG9yOiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4NCjxzdmcgZmlsbD0iIzAwMDAwMCIgaGVpZ2h0PSI4MDBweCIgd2lkdGg9IjgwMHB4IiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIA0KCSB2aWV3Qm94PSIwIDAgNDkwLjIgNDkwLjIiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc%2BDQoJPGc%2BDQoJCTxwYXRoIGQ9Ik0zNjguNCwyNDUuMWMwLDEyLjktMTAuNSwyMy40LTIzLjQsMjMuNHMtMjMuNC0xMC41LTIzLjQtMjMuNHMxMC41LTIzLjQsMjMuNC0yMy40UzM2OC40LDIzMi4yLDM2OC40LDI0NS4xeiBNNzYuMSwyNDUuMQ0KCQkJYzAsMTIuOSwxMC41LDIzLjQsMjMuNCwyMy40czIzLjQtMTAuNSwyMy40LTIzLjRzLTEwLjUtMjMuNC0yMy40LTIzLjRTNzYuMSwyMzIuMiw3Ni4xLDI0NS4xeiBNMzguNSwzODIuN2gyNjh2LTMyLjlINzguMQ0KCQkJYzAuNC0yLjMsMC43LTQuNywwLjctNy4yYzAtMjEuNS0xNy41LTM5LTM5LTM5Yy0yLjMsMC00LjYsMC4yLTYuOCwwLjZWMTg1LjljMi4yLDAuNCw0LjUsMC42LDYuOCwwLjZjMjEuNSwwLDM5LTE3LjUsMzktMzkNCgkJCWMwLTIuNS0wLjItNC44LTAuNy03LjJoMjg2LjFjLTAuOCwzLTEuMiw2LjItMS4yLDkuNWMwLDIxLjUsMTcuNSwzOSwzOSwzOWMzLjMsMCw2LjYtMC40LDkuNi0xLjJ2NzkuOWgzMi45VjE0Ng0KCQkJYzAtMjEuMi0xNy4zLTM4LjUtMzguNS0zOC41SDM4LjVDMTcuMywxMDcuNSwwLDEyNC44LDAsMTQ2djE5OC4yQzAsMzY1LjQsMTcuMywzODIuNywzOC41LDM4Mi43eiBNMzIxLjYsMzU1LjENCgkJCWMtMi43LDAtNC45LDIuMi00LjksNC45djE3LjhjMCwyLjcsMi4yLDQuOSw0LjksNC45aDExOGMyLjcsMCw0LjktMi4yLDQuOS00LjlWMzYwYzAtMi43LTIuMi00LjktNC45LTQuOUgzMjEuNnogTTQ2Ny40LDMzOS4xDQoJCQl2LTE3LjhjMC0yLjctMi4yLTQuOS00LjktNC45aC0xMThjLTIuNywwLTQuOSwyLjItNC45LDQuOXYxNy44YzAsMi43LDIuMiw0LjksNC45LDQuOWgxMThDNDY1LjIsMzQ0LDQ2Ny40LDM0MS44LDQ2Ny40LDMzOS4xeg0KCQkJIE00ODUuMywyNzcuN2gtMTE4Yy0yLjcsMC00LjksMi4yLTQuOSw0Ljl2MTcuOGMwLDIuNywyLjIsNC45LDQuOSw0LjloMTE4YzIuNywwLDQuOS0yLjIsNC45LTQuOXYtMTcuOA0KCQkJQzQ5MC4yLDI3OS45LDQ4OCwyNzcuNyw0ODUuMywyNzcuN3ogTTIyMi4zLDE2MC43YzQ2LjYsMCw4NC40LDM3LjgsODQuNCw4NC40cy0zNy44LDg0LjQtODQuNCw4NC40cy04NC40LTM3LjgtODQuNC04NC40DQoJCQlTMTc1LjYsMTYwLjcsMjIyLjMsMTYwLjd6IE0yMjkuNywxODIuNGgtOS42Yy0xLjUsMC0yLjYsMS4yLTIuNiwyLjZ2MTEuNWMtNy4zLDEuMS0xMy4zLDMuNy0xNy44LDguMWMtNSw0LjgtNy41LDEwLjktNy41LDE4LjQNCgkJCWMwLDguMiwyLjQsMTQuNSw3LjEsMTguN2M0LjcsNC4yLDEyLjMsOC40LDIyLjYsMTIuNmM0LjMsMS44LDcuMiwzLjcsOC45LDUuNmMxLjcsMS45LDIuNSw0LjYsMi41LDguMWMwLDMtMC44LDUuNC0yLjQsNy4zDQoJCQljLTEuNiwxLjgtNCwyLjgtNy4yLDIuOGMtMy44LDAtNi45LTEuMi05LjItMy42Yy0xLjktMi0zLjEtNS0zLjQtOWMtMC4xLTEuNi0xLjUtMi44LTMuMS0yLjdsLTE1LjgsMC4zYy0xLjcsMC0zLjEsMS41LTMuMSwzLjINCgkJCWMwLjQsOC40LDMuMSwxNC44LDguMSwxOS40YzUuNCw0LjksMTIuMiw3LjksMjAuMyw4Ljh2MTAuOGMwLDEuNSwxLjIsMi42LDIuNiwyLjZoOS42YzEuNSwwLDIuNi0xLjIsMi42LTIuNnYtMTEuMg0KCQkJYzYuNS0xLjIsMTEuOC0zLjgsMTUuOS03LjdjNC44LTQuNyw3LjItMTAuOCw3LjItMTguNWMwLTgtMi40LTE0LjItNy4yLTE4LjZjLTQuOC00LjMtMTIuMy04LjctMjIuNS0xM2MtNC40LTEuOS03LjQtMy44LTktNS43DQoJCQlzLTIuNC00LjQtMi40LTcuNHMwLjctNS40LDIuMi03LjRjMS41LTEuOSwzLjgtMi45LDYuOS0yLjljMy4xLDAsNS41LDEuMiw3LjQsMy41YzEuNSwxLjksMi40LDQuNSwyLjcsOGMwLjEsMS42LDEuNiwyLjcsMy4xLDIuNw0KCQkJbDE1LjgtMC4yYzEuNywwLDMuMi0xLjUsMy4xLTMuMmMtMC40LTYuOS0yLjYtMTIuNy02LjctMTcuNGMtNC4yLTQuOS05LjctOC0xNi42LTkuNFYxODVDMjMyLjMsMTgzLjUsMjMxLjEsMTgyLjQsMjI5LjcsMTgyLjR6Ig0KCQkJLz4NCgk8L2c%2BDQo8L2c%2BDQo8L3N2Zz4%3D
-)](https://revi.cc/donate)
+[![Release](https://img.shields.io/github/v/release/jxeqoz/playbook.svg?label=Release)](https://github.com/jxeqoz/playbook/releases/latest)
+[![Based on ReviOS](https://img.shields.io/badge/based%20on-ReviOS%2026.10-D50000)](https://github.com/meetrevision/playbook)
+[![License](https://img.shields.io/static/v1?label=LICENSE&message=CC%20BY-SA&logo=creativecommons)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 </div>
 
-ReviOS is a customized version of Windows, designed to be lightweight, stable, and focused on improving performance, privacy and compatibility. It aspires to re-create what Windows as an operating system should have been - easy and simple. Now compatible with [AME Wizard](https://amelabs.net)🧙.
+A fork of the **[ReviOS Playbook](https://github.com/meetrevision/playbook) by [Revision](https://revi.cc)** for [AME Wizard](https://amelabs.net) 🧙, tuned for Windows 11 26H2 on a gaming + development desktop.
 
-## ✨ Key Features
+It keeps ReviOS's debloat and privacy work, but runs **without Revision Tool**, leaves Windows **unbranded**, and keeps Windows' **security and update features on**.
 
-- 🎯 Easy to use, just drag and drop the playbook into [AME Wizard](https://amelabs.net)
-- 🗑 Removes bloatware and unnecessary system components
-- ⚡ Optimizes your system for performance and improved privacy
-- 🔧 Integrates the [Revision Tool](https://github.com/meetrevision/revision-tool) to customize your system further
+> [!IMPORTANT]
+> This is an unofficial fork. Revision does not support it, so please don't ask them for help with it. The original lives at [meetrevision/playbook](https://github.com/meetrevision/playbook).
 
-For more detailed information, see our documentation [here](https://revi.cc/docs/features).
+## ✨ What's different from ReviOS
 
-## 💻 System Requirements
+- **No Revision Tool.** Every `revitool` call is replaced with native Windows commands: AppX removal via [`APPX.ps1`](src/Executables/APPX.ps1), `powercfg`, `fsutil`, registry. WinSxS package removal is dropped.
+- **No branding.** Edition/OEM info, registered organization, boot menu name, wallpaper and lock screen stay stock.
+- **Security stays on.** Defender (turned back on after the run), SmartScreen, VBS / Memory Integrity, Windows Recovery, System Restore.
+- **Windows Update works normally.** No pause until 2038; automatic scans, restart notifications, driver updates and reserved storage stay on.
+- **No BitLocker.** Device encryption is prevented; an already encrypted system drive is decrypted.
+- **Faster File Explorer.** The folder type discovery fix is applied as the signed-in user (AME skips `HKCU\Software\Classes`), Gallery is hidden, Home shows no recent/frequent/Office.com items, hidden files are shown.
+- **Dev friendly.** Long paths, Developer Mode, `RemoteSigned` execution policy, sudo in a new window, memory compression kept, no automatic app archiving, Visual Studio CEIP off.
+- **Risky tweaks reverted.** 2 s app/service kill timeouts, idle priority for lsass/sihost/fontdrvhost/ctfmon, C: excluded from the boot disk check, Take Ownership menu, UTC hardware clock, wiping event logs and SoftwareDistribution, NetBT/tcpipreg off, deprovisioning apps that are kept.
 
-ReviOS Playbook currently supports ARM64 and AMD64 builds of the following Windows versions:
+## 🗑 What it still does (from ReviOS)
 
-- Windows 10 21H2 `19044` (+ LTSC)
-- Windows 10 22H2 `19045`
-- Windows 11 23H2 `22631`
-- Windows 11 24H2 `26100` (+ LTSC)
-- Windows 11 25H2 `26200`
-- Windows 11 26H1 `28000`
-- Windows 11 26H2 `26300`
+- Removes bloat apps: Widgets, Copilot, Teams, OneDrive, Edge (WebView2 stays), Bing apps, Clipchamp, Solitaire, Office/Outlook stubs and more.
+- Turns off telemetry, ads, suggestions, web results in Search, Game DVR and diagnostics tasks.
+- Ultimate Performance power plan with core parking off, mouse acceleration off, foreground priority boost, NTFS last-access and 8.3 names off.
+- Installs the VC++ runtime and, optionally, Brave or Firefox.
 
-Any other build **is not** supported by Revision.
+## 💻 Requirements
 
-⚠️ ISO Injection is only supported on Windows 11 ISOs.
+- **Windows 11 26H2 (`26300`)**, which is what this fork is built and reviewed for. `playbook.conf` still accepts the other builds ReviOS supports, but they are not the target.
+- A fresh, stock installation is recommended.
 
 ## 🚀 Getting Started
 
-Ready to elevate your Windows experience? Follow these simple steps:
+1. Download [AME Wizard](https://amelabs.net) and the `.apbx` from the latest [release](https://github.com/jxeqoz/playbook/releases/latest).
+2. Drag the playbook into AME Wizard and follow the steps. It will ask you to switch off the four Windows Security toggles (real-time, cloud, sample submission, Tamper Protection) for the run.
+3. Pick your options and let it finish and restart.
+4. **Afterwards:** turn **Tamper Protection** back on in Windows Security > Virus & threat protection > Manage settings. The playbook turns the other toggles back on itself.
 
-> [!CAUTION]
-> It's recommended to start with a fresh, stock Windows installation before applying the playbook to avoid potential conflicts with existing software and user data.
+## ⚙️ Options
 
-1. Download [AME Wizard](https://amelabs.net) and our playbook from the latest [releases](https://github.com/meetrevision/playbook/releases).
-2. Launch the AME Wizard and drag-and-drop the playbook into the interface.
-3. Follow the on-screen instructions to complete the installation.
+| Page | Option | Default |
+|---|---|---|
+| Browser | Brave / Firefox / none | Brave |
+| Hibernate | Disable hibernate and Fast Startup | On |
+| Components | Remove Edge, OneDrive, Copilot app, Teams | On |
+| Apps | Remove Photos, Dev Home, Phone Link | On |
+| Apps | Remove Xbox apps (Identity Provider and TCUI stay) | Off |
+| General | Dark mode, legacy context menu, no transparency | On |
+| General | Remove pinned Start items | On |
+| General | Disable automatic maintenance | Off |
+| General | Disable background Store apps (Game Bar and Store exempt) | On |
 
-## 📚 Documentation
+## 🧰 Worth doing by hand
 
-Explore our documentation for more information:
+Not automated, because they depend on your hardware:
 
-- [Playbook](https://revi.cc/docs/playbook/install)
-- [ISO Injection](https://revi.cc/docs/playbook/iso)
-- [Troubleshooting](https://revi.cc/docs/faq/troubleshoot/cannot-login)
+- BIOS: enable XMP and Resizable BAR (update the BIOS first).
+- Display: highest refresh rate, G-SYNC/FreeSync with a frame cap a few FPS below it, NVIDIA Reflex or AMD Anti-Lag in games that support it.
+- Development: put repos and package caches on a [Dev Drive](https://learn.microsoft.com/en-us/windows/dev-drive/) instead of adding Defender exclusions.
+
+## 🙏 Credits
+
+- **[ReviOS Playbook](https://github.com/meetrevision/playbook) by [Revision](https://revi.cc)**, the base of this fork. Almost all of the debloat, privacy and performance work here is theirs. Consider [supporting them](https://revi.cc/donate).
+- **[AME Wizard](https://amelabs.net)** by Ameliorated, which runs the playbook.
+- **[Atlas-OS](https://github.com/Atlas-OS/Atlas)**, for documenting the `HKCU\Software\Classes` workaround ([3ff023ad](https://github.com/Atlas-OS/Atlas/commit/3ff023ad)).
 
 ## 📝 License
 
-[![License](https://img.shields.io/static/v1?label=LICENSE&message=CC%20BY-SA&logo=creativecommons)](https://creativecommons.org/licenses/by-sa/4.0/)
-
-ReviOS Playbook is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/).
-
-## 🤝 Support
-
-If you need any assistance or have any questions, feel free to reach out to our team. We are here to help!
-
-> [!NOTE]
-> Revision itself (and its Discord server) is not tech support in any shape or form.
-
-The best way to contact us is through our [Discord server](https://discord.gg/962y4pU).
+Licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/), the same as ReviOS. Changes from the original are listed above and in the commit history.
