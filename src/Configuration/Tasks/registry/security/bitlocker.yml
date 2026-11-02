@@ -7,3 +7,11 @@ actions:
   # === Disable Automatic Device Encryption (BitLocker)
   # https://learn.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-device-encryption-overview-windows-10#bitlocker-device-encryption
   - !registryValue: {path: 'HKLM\SYSTEM\ControlSet001\Control\BitLocker', value: 'PreventDeviceEncryption', type: REG_DWORD, data: '1'}
+
+  # === If OOBE already started device encryption, decrypt the system drive (runs in the background, data stays intact)
+  - !powerShell:
+    wait: true
+    errorAction: Log
+    command: |
+      $volume = Get-BitLockerVolume -MountPoint $env:SystemDrive -ErrorAction SilentlyContinue
+      if ($volume -and $volume.VolumeStatus -ne 'FullyDecrypted') { Disable-BitLocker -MountPoint $env:SystemDrive | Out-Null }
