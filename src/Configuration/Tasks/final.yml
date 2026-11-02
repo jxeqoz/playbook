@@ -77,6 +77,14 @@ actions:
     runas: currentUserElevated
     command: 'Set-MpPreference -DisableRealtimeMonitoring $false -MAPSReporting Advanced -SubmitSamplesConsent SendSafeSamples'
 
+  # Scheduled scans run at low CPU priority so they don't steal time from a game or a build; real-time protection is unchanged.
+  # Separate action so an unsupported parameter can't stop the re-enable above. https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-defender#enablelowcpupriority
+  - !powerShell:
+    wait: true
+    errorAction: Log
+    runas: currentUserElevated
+    command: 'Set-MpPreference -EnableLowCpuPriority $true'
+
   # start.yml muted Security and Maintenance toasts during deployment; turn them back on ("virus protection is off" etc.)
   - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled', operation: delete}
 
