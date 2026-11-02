@@ -8,7 +8,7 @@ actions:
   # ------> Sets default time to UTC to fix Windows and Linux showing different Times when dual booting and to provide a more universal Time configuration. Most Linux distros use UTC by default.
   # ------> https://www.howtogeek.com/323390/how-to-fix-windows-and-linux-showing-different-times-when-dual-booting/
   - !registryKey: {path: 'HKCU\Software\Microsoft\Internet Explorer\LowRegistry\Audio\PolicyConfig\PropertyStore', operation: add}
-  - !registryValue: {path: 'HKLM\System\CurrentControlSet\Control\TimeZoneInformation', value: 'RealTimeIsUniversal', type: REG_DWORD, data: '1'}
+  # RealTimeIsUniversal (UTC hardware clock) dropped: only needed for Linux dual-boot, not WSL2, and unsupported by Microsoft
 
   # === Workaround and fix for Mapped Network Drives and UAC.
   # ------> https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/mapped-drives-not-available-from-elevated-command#workaround---method-2

@@ -94,16 +94,9 @@ actions:
   # ------> https://learn.microsoft.com/en-us/windows/win32/shell/autoplay-reg
   - !registryValue: {path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoDriveTypeAutoRun', type: REG_DWORD, data: '255'}
   - !registryValue: {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoDriveTypeAutoRun', type: REG_DWORD, data: '255'}
-   
-  # === Windows low disk space checking - Disabled
-  # ------> (Also prevents idle hard disks from going into standby)
-  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoLowDiskSpaceChecks', type: REG_DWORD, data: '1'}
-  - !registryValue: {path: 'HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoLowDiskSpaceChecks', type: REG_DWORD, data: '1'}
 
-  # === Speed up shutdown time by lowering the amount of time it takes the OS to close/kill background Services.
-  # ------> Changed to 1.5 seconds (1500), default is 5 seconds (5000).
-  # ------> https://www.sevenforums.com/tutorials/717-shut-down-speed-up.html
-  - !registryValue: {path: 'HKLM\SYSTEM\ControlSet001\Control', value: 'WaitToKillServiceTimeout', type: REG_SZ, data: '1500'}
+  # Low disk space warnings and the 5 s service shutdown timeout stay stock:
+  # Docker/WSL disk images can fill C: silently, and 1.5 s is too short for WSL/Docker/databases to stop cleanly
 
   # === Do not track Shell shortcuts during roaming - Enabled
   # ------> https://admx.help/?Category=Windows_11_2022&Policy=Microsoft.Policies.WindowsExplorer::LinkResolveIgnoreLinkInfo

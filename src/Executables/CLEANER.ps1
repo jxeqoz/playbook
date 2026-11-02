@@ -44,10 +44,6 @@ Start-Process -FilePath "$env:SystemRoot\system32\cleanmgr.exe" -ArgumentList "/
 Write-Host "Cleaning up leftovers"
 $foldersToRemove = @(
     "CbsTemp",
-    "Logs",
-    "SoftwareDistribution",
-    "System32\LogFiles",
-    "System32\LogFiles\WMI"
     "System32\SleepStudy",
     "System32\sru",
     "System32\WDI\LogFiles",
@@ -72,7 +68,7 @@ foreach ($folderName in $foldersToRemove) {
 # Get-ChildItem -Path "$env:SystemRoot" -Filter *.log -File -Recurse -Force | Remove-Item -Recurse -Force | Out-Null
 
 Write-Host "Cleaning up %TEMP%"
-Get-ChildItem -Path "$env:TEMP" -Exclude "AME", "Revision-Tool" | Remove-Item -Recurse -Force
+Get-ChildItem -Path "$env:TEMP" -Exclude "AME" | Remove-Item -Recurse -Force
 
 # Just in case
 Start-ScheduledTask -TaskPath "\Microsoft\Windows\DiskCleanup\" -TaskName "SilentCleanup"

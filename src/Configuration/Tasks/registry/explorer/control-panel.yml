@@ -20,22 +20,9 @@ actions:
   - !registryValue: {path: 'HKCU\Control Panel\Desktop', value: 'ActiveWndTrkTimeout', type: REG_DWORD, data: '10'}
   - !registryValue: {path: 'HKU\.DEFAULT\Control Panel\Desktop', value: 'ActiveWndTrkTimeout', type: REG_DWORD, data: '10'}
 
-  # === Disables the blue screen that pops up when you're trying to shutdown or restart, asking you to save your work.
-  - !registryValue: {path: 'HKCU\Control Panel\Desktop', value: 'AutoEndTasks', type: REG_SZ, data: '1'}
-  - !registryValue: {path: 'HKU\.DEFAULT\Control Panel\Desktop', value: 'AutoEndTasks', type: REG_SZ, data: '1'}
-  
-  # === HungAppTimeout also specifies how long (5 seconds by default) the system waits for user processes to end after the user clicks/taps on the End task button in Task Manager.
-  # ------> Changed 2 seconds (2000), default is 5 seconds (5000).
-  # ------> https://www.tenforums.com/tutorials/97842-change-hungapptimeout-value-windows-10-a.html
-  - !registryValue: {path: 'HKCU\Control Panel\Desktop', value: 'HungAppTimeout', type: REG_SZ, data: '2000'}
-  - !registryValue: {path: 'HKU\.DEFAULT\Control Panel\Desktop', value: 'HungAppTimeout', type: REG_SZ, data: '2000'}
-  
-  # === The WaitToKillAppTimeout value determines how long the system waits for user processes to end after the user attempts to sign out, restart, or shut down Windows.
-  # ------> Default is 20 seconds (20000).
-  # ------> https://www.eightforums.com/threads/waittokillapptimeout-specify-for-shutdown-in-windows.37424/
-  - !registryValue: {path: 'HKCU\Control Panel\Desktop', value: 'WaitToKillAppTimeout', type: REG_SZ, data: '2000'}
-  - !registryValue: {path: 'HKU\.DEFAULT\Control Panel\Desktop', value: 'WaitToKillAppTimeout', type: REG_SZ, data: '2000'}
-  
+  # AutoEndTasks / HungAppTimeout / WaitToKillAppTimeout stay stock: forcing apps closed after 2 s at
+  # shutdown or an update restart kills editors and IDEs without the "save your work" prompt
+
   # === This value controls the timeout period in milliseconds for all low-level hooks.
   # ------> https://www.registryrecycler.com/blog/2013/07/speed-up-your-windows-pc-through-registry/
   # ------> https://www.quickmacros.com/au/help/api/Au.AHookWin.LowLevelHooksTimeout.html#Au_AHookWin_LowLevelHooksTimeout_remarks
